@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import ollama from "ollama";
 
-const model = process.env.MODEL;
+const model = "llama3.2:1b";
 
 export async function POST(request: NextRequest) {
   try {
-    if (!model) {
-      throw new Error("MODEL not set.");
-    }
 
     const data = await request.json();
     const response = await ollama.chat({
