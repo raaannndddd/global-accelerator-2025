@@ -1,33 +1,116 @@
-# SOUNDWAVE Track Template
+# 🎵 SoundWave Template
 
-This template is designed for audio and music-related projects in the hackathon.
-
-## Getting Started
-
-1. Navigate to the `nextjs-app` directory
-2. Install dependencies: `npm install`
-3. Run the development server: `npm run dev`
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+A Next.js template for building amazing audio experiences! This template provides voice recording, playback, and transcription capabilities with a beautiful modern interface.
 
 ## Features
 
-- Next.js 14 with TypeScript
-- Tailwind CSS for styling
-- Audio recording and playback
-- Voice recorder component
-- Web Audio API integration
-- Real-time audio processing
+- **Voice Recording**: Real-time audio recording with MediaRecorder API
+- **Audio Playback**: Built-in audio controls with play/pause functionality
+- **Recording Timer**: Live timer display during recording
+- **Visual Feedback**: Animated recording indicator and controls
+- **Transcription Ready**: API endpoint for voice-to-text conversion
+- **Modern UI**: Beautiful gradient background with glassmorphism effects
 
-## Structure
+## 🚀 Getting Started
 
-- `app/` - Next.js app directory
-- `components/` - Audio components (voice-recorder, etc.)
-- `lib/` - Audio utilities and helpers
-- `public/` - Static assets
+### Installation
 
-## Audio Features
+1. Navigate to the nextjs-app directory:
+```bash
+cd nextjs-app
+```
 
-- Record audio from microphone
-- Play back recorded audio
-- Audio visualization
-- Voice notes functionality 
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📁 Project Structure
+
+```
+nextjs-app/
+├── app/
+│   ├── api/
+│   │   └── transcribe/
+│   │       └── route.ts          # Voice transcription endpoint
+│   ├── components/
+│   │   └── voice-recorder.tsx    # Voice recording component
+│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout component
+│   └── page.tsx                  # Main audio app page
+├── package.json                  # Dependencies and scripts
+└── tsconfig.json                 # TypeScript configuration
+```
+
+## 🎙️ Audio Features
+
+The template includes:
+
+- **Real-time Recording**: Browser-based audio recording
+- **Audio Controls**: Play, pause, and recording controls
+- **Timer Display**: Shows recording duration
+- **Audio Storage**: Blob-based audio storage and playback
+- **Transcription API**: Ready-to-use speech-to-text endpoint
+
+### Using the Voice Recorder
+
+The `VoiceRecorder` component provides:
+
+1. **Start Recording**: Click to begin audio capture
+2. **Stop Recording**: End recording and save audio
+3. **Play Back**: Listen to recorded audio
+4. **Visual Feedback**: Animated indicators during recording
+
+## 🤖 Transcription Integration
+
+The template includes a transcription API endpoint at `/api/transcribe` for:
+
+- Converting speech to text
+- Voice command processing
+- Audio content analysis
+- Accessibility features
+
+### Browser Permissions
+
+The app requires microphone permissions. Users will be prompted to allow access on first use.
+
+## 🎨 Customization
+
+- Modify audio settings in `voice-recorder.tsx`
+- Adjust recording quality and format
+- Add audio visualization effects
+- Extend transcription functionality
+- Style components with Tailwind classes
+
+## 📝 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🛠️ Technologies
+
+- **Next.js 14** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS
+- **MediaRecorder API** - Audio recording
+- **Web Audio API** - Audio processing
+- **Lucide React** - Beautiful icons
+
+## 🔧 Audio Configuration
+
+The recorder uses these default settings:
+- Format: WAV
+- Quality: Browser default
+- Timer: 1-second intervals
+- Auto-stop: User controlled
+
+Build amazing audio experiences! 🎵 
