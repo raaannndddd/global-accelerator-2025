@@ -1,5 +1,18 @@
 # 🚀 OpenxAI Global AI Accelerator 2025 University Hackathon
 
+## Join the OpenxAI Global AI Accelerator 2025 University Hackathon
+
+**$7500+ in Prizes!**
+
+Today, a few big corporations manage 90% of the world's AI & Cloud systems, and we are supposed to trust them. 
+We are here to challenge that. 
+
+The OpenxAI Global Accelerator Program invites Universities to create decentralized AI app projects using NextJS/Python, across 9 tracks including AI gaming, text, image, voice, education, finance, health, environment and social apps. 
+
+Vibe code with our app demo code in Github & Cursor AI. Attend our Workshops to learn how - see our Mimic & AI Panel AI apps for inspiration!
+
+Starting 15th July 2025, this 30-day program offers the possibility to win from $7,500+ prizes, the Xnode One Hardware, and mentorship from industry experts like NVIDIA.
+
 Welcome to the **OpenxAI Global AI Accelerator Program 2025**! This repository contains templates and examples to help you build decentralized AI applications across 9 different tracks.
 
 ## 🏆 Hackathon Overview
@@ -14,315 +27,150 @@ Welcome to the **OpenxAI Global AI Accelerator Program 2025**! This repository c
 
 | Date | Event |
 |------|-------|
-| **Jul 15th** | Sign-Ups Open |
-| **Jul 18th** | Build Phase Begins |
-| **Jul 22nd** | Mentor Sessions |
-| **Jul 25th** | Submissions Open |
-| **Aug 12th** | Submissions Close |
-| **Aug 15th** | Winners Announced! |
+| **Jul 15th** | Sign-Ups Open - Hackathon Official Announcement |
+| **Jul 18th** | Start Building - Form teams or Go Solo! Vibe Code your way to prizes across 9 tracks |
+| **Jul 22nd** | Mentor - Check our Luma Calendar to attend Orientation & Developer Workshops |
+| **Jul 25th** | Submissions open |
+| **Aug 12th** | Submission close & judging begins - Create branch & PR to our Github. Include Video link in README |
+| **Aug 15th** | Winning Teams Announcement - Placement on our Upcoming AI App Store & Prizes to be Won! |
+
+### 🎓 Attend our developer workshops and mentor sessions
+
+**When is it hosted?**
+The event is running from the 15th of July. Here's the Luma Calendar. 
+Be sure to sign-up on Luma for event updates. Subject to change.
+
+- **19th Jul** — OpenxAI Global Accelerator Program: Orientation Workshop
+- **23rd Jul** — Spark & Succeed: Launch Your OpenxAI Hackathon Project
+- **30th Jul** — Build Fast, Build Smart: OpenxAI Hackathon Infrastructure
+- **6th Aug** — Data for the Win: Power Your OpenxAI Hackathon Project
+- **13th Aug** — Prototype and Pitch: Nailing Your OpenxAI Hackathon Demo
 
 ## 🎯 9 Tracks Available
 
-1. **Textstream** - Build AI apps that transform text—create chatbots that feel human, generate instant articles, or summarize complex documents with precision
-2. **Soundwave** - Develop audio-driven AI solutions like voice assistants, speech-to-text tools, or apps that analyze sound for insights
-3. **Gamejam** - Create AI-enhanced games or tools—think smart NPCs, dynamic worlds, or apps that generate game content on the fly
-4. **Vision** - Build AI apps that see and understand the world—create tools for image recognition, object detection, or video analysis to unlock visual insights
-5. **Enviro** - Develop AI solutions for environmental challenges, like climate modeling, wildlife tracking, or sustainable energy optimization to make a real-world impact
-6. **HealthTech** - Innovate in healthcare with AI—build apps for medical image analysis, disease prediction, or personalized treatment plans
-7. **FinTech** - Build AI tools for finance—create fraud detectors, automated advisors, predictive market analyzers & Web3 Defi
-8. **LearnAI** - Develop AI-powered tools to revolutionize learning—think personalized tutors, automated grading, or interactive educational content
-9. **Social Network** - Build AI apps that enhance social interactions—create tools for smarter recommendations, community engagement, or AI-driven content curation
+### Innovate with AI in Various Categories
 
-## 🛠️ Project Templates
+1. **Textstream** - Build AI apps that transform text. Create chatbots that feel human, generate instant articles, or summarize complex documents with precision.
 
-This repository includes ready-to-use templates for different AI application types:
+2. **Soundwave** - Develop audio-driven AI solutions like voice assistants, speech-to-text tools, or apps that analyze sound for insights.
 
-### 📁 Available Templates
+3. **Gamejam** - Create AI-enhanced games or tools. Think smart NPCs, dynamic worlds, or apps that generate game content on the fly.
 
-- **`template-app-TEXTSTREAM-TRACK/`** - Textstream track: Basic chat application with Ollama
-- **`template-app-VISION-TRACK/`** - Vision track: Computer vision example (HOT or NOT app)
-- **`template-app-SOUNDWAVE-TRACK/`** - Soundwave track: Audio/speech AI applications
-- **`template-app-GAMEJAM-TRACK/`** - Gamejam track: Gaming AI applications
-- **`template-app-ENVIRO-TRACK/`** - Enviro track: Environmental AI applications
-- **`template-app-HEALTHTECH-TRACK/`** - HealthTech track: Healthcare AI applications
-- **`template-app-FINTECH-TRACK/`** - FinTech track: Financial AI applications
-- **`template-app-LEARNAI-TRACK/`** - LearnAI track: Educational AI applications
-- **`template-app-SOCIAL-NETWORK-TRACK/`** - Social Network track: Social media AI applications
+4. **Vision** - Build AI apps that see and understand the world - create tools for image recognition, object detection, or video analysis to unlock visual insights.
 
-### 🔧 Template Features
+5. **Enviro** - Develop AI solutions for environmental challenges, like climate modeling, wildlife tracking, or sustainable energy optimization to make a real-world impact.
 
-Each template includes:
-- ✅ **Next.js 15** with TypeScript
-- ✅ **Tailwind CSS** for styling
-- ✅ **Ollama integration** for local AI models
-- ✅ **Nix deployment** configuration
-- ✅ **Production-ready** setup
-- ✅ **Comprehensive documentation**
+6. **HealthTech** - Innovate in healthcare with AI. Build apps for medical image analysis, disease prediction, or personalized treatment plans.
+
+7. **FinTech** - Build AI tools for finance. Create fraud detectors, automated advisors, predictive market analyzers & Web3 Defi.
+
+8. **LearnAI** - Develop AI-powered tools to revolutionize learning—think personalized tutors, automated grading, or interactive educational content.
+
+9. **Social Network** - Build AI apps that enhance social interactions—create tools for smarter recommendations, community engagement, or AI-driven content curation.
+
+## 👥 Our Mentors
+
+- **Ashton Hettiarachi** - OpenxAI / Openmesh - Founder
+- **Peter Xing** - Microsoft / Transhumanism Australia - Cloud & AI Specialist, Co-Founder
+- **Penny Wong** - The Cypher Network / Radmis Advisory - CISO & Strategic Advisory in Emerging Tech, Cybersecurity & AI Risk, Director
+- **Francesco Baldisseri** - BeawAI / Motopack - AI Trading Advisor. Chief Technology Officer
+- **Robert Moore** - HyperCycle - Chief Science Officer
+- **Hariharan Suresh** - NVIDIA - Senior Cloud & GenAI Technologist
+- **Tim Lea** - Fractonium - CEO, Advisor, Blockchain & AI Speaker
+- **Alison Haire** - Lilypad - CEO & Co‑Founder
+- **John Forfar** - OpenxAI / Openmesh - Core Contributor (Dev Rel)
+- **Samuel Mens** - OpenxAI / Openmesh - Lead Engineering
+
+## 🛠️ Quick Start
+
+### 📁 Available Demo Apps
+
+- **`demo-app-TEXTSTREAM-TRACK/`** - Chat applications
+- **`demo-app-VISION-TRACK/`** - Computer vision apps
+- **`demo-app-SOUNDWAVE-TRACK/`** - Audio/speech AI
+- **`demo-app-GAMEJAM-TRACK/`** - Gaming AI
+- **`demo-app-ENVIRO-TRACK/`** - Environmental AI
+- **`demo-app-HEALTHTECH-TRACK/`** - Healthcare AI
+- **`demo-app-FINTECH-TRACK/`** - Financial AI
+- **`demo-app-LEARNAI-TRACK/`** - Educational AI
+- **`demo-app-SOCIAL-NETWORK-TRACK/`** - Social media AI
+
+Each includes Next.js 15, TypeScript, Tailwind CSS, and Ollama integration.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- **Node.js 18+** installed
-- **Ollama** installed and running locally
-- **Nix** (optional, for advanced deployment)
+- **Node.js 18+** and **Ollama** installed
 - **Git** for version control
 
 ### Quick Start
-
-1. **Choose a template:**
-   ```bash
-   # For Textstream track (chat/text apps)
-   cp -r template-app-TEXTSTREAM-TRACK my-textstream-app
-   
-   # For Vision track (computer vision)
-   cp -r template-app-VISION-TRACK my-vision-app
-   
-   # For Soundwave track (audio/speech)
-   cp -r template-app-SOUNDWAVE-TRACK my-soundwave-app
-   
-   # For Gamejam track (gaming AI)
-   cp -r template-app-GAMEJAM-TRACK my-gamejam-app
-   
-   # For Enviro track (environmental AI)
-   cp -r template-app-ENVIRO-TRACK my-enviro-app
-   
-   # For HealthTech track (healthcare AI)
-   cp -r template-app-HEALTHTECH-TRACK my-healthtech-app
-   
-   # For FinTech track (financial AI)
-   cp -r template-app-FINTECH-TRACK my-fintech-app
-   
-   # For LearnAI track (educational AI)
-   cp -r template-app-LEARNAI-TRACK my-learnai-app
-   
-   # For Social Network track (social media AI)
-   cp -r template-app-SOCIAL-NETWORK-TRACK my-social-app
-   ```
-
-2. **Customize the template:**
-   ```bash
-   cd my-ai-chat-app
-   
-   # Update package.json
-   npm pkg set name="my-awesome-ai-app"
-   
-   # Install dependencies
-   npm install
-   ```
-
-3. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser:**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 🎨 Customization Guide
-
-### 1. Update App Information
-
-```json
-// package.json
-{
-  "name": "your-app-name",
-  "version": "1.0.0",
-  "description": "Your AI app description"
-}
-```
-
-### 2. Modify the UI
-
-Edit `src/app/page.tsx` to customize the user interface:
-```tsx
-// Example: Change the title
-<h1 className="text-3xl font-bold text-center">
-  Your AI App Title
-</h1>
-```
-
-### 3. Update AI Logic
-
-Modify `src/app/api/` routes to change AI behavior:
-```typescript
-// Example: Change the AI prompt
-const response = await ollama.chat({
-  model: "llama3.2:1b",
-  messages: [{ 
-    role: "user", 
-    content: "Your custom prompt here" 
-  }],
-});
-```
-
-### 4. Add New Features
-
-- **New API endpoints** in `src/app/api/`
-- **New pages** in `src/app/`
-- **New components** in `src/components/`
-
-## 📦 Deployment Options
-
-### Option 1: Traditional Deployment
-
 ```bash
-# Build for production
-npm run build
+# Choose a demo app (increment your project number so it is unique)
+cp -r demo-app-TEXTSTREAM-TRACK ./00_HACKATHON-SUBMISSIONS/0001_my-ai-app
 
-# Start production server
-npm run start
+# Setup and run
+cd ./00_HACKATHON-SUBMISSIONS/my-ai-app
+npm install
+npm run dev
 ```
 
-### Option 2: Nix Deployment
+Open [http://localhost:3000](http://localhost:3000) to see your app!
 
-```bash
-# From your app directory
-nix run
-```
+## 📝 Submission Format
 
-### Option 3: NixOS Production Deployment
+See `00_HACKATHON-SUBMISSIONS/0000_Example-Project-Name/README.md` for the required project structure and naming convention.
 
-Add to your NixOS configuration:
-```nix
-services.your-app-name = {
-  enable = true;
-  port = 3000;
-  host = "0.0.0.0";
-};
-```
+## 📞 Support
 
-## 📝 Submission Guidelines
-
-### Required Components
-
-1. **Working Application**
-   - Functional AI application
-   - Clean, responsive UI
-   - Error handling
-
-2. **Documentation**
-   - README.md with setup instructions
-   - API documentation
-   - Usage examples
-
-3. **Code Quality**
-   - TypeScript/JavaScript
-   - Clean, readable code
-   - Proper error handling
-   - Comments and documentation
-
-4. **Innovation**
-   - Unique AI use case
-   - Creative implementation
-   - User value proposition
-
-### Submission Checklist
-
-- [ ] Application runs without errors
-- [ ] README.md is comprehensive
-- [ ] Code is well-documented
-- [ ] UI is user-friendly
-- [ ] AI functionality works correctly
-- [ ] Deployment instructions included
-- [ ] Project demonstrates innovation
-- [ ] Repository is public and accessible
-
-### Submission Format
-
-1. **GitHub Repository**
-   - Public repository
-   - Clear project name
-   - Comprehensive README.md
-
-2. **Demo Video** (Optional but Recommended)
-   - 2-3 minute walkthrough
-   - Show key features
-   - Demonstrate AI functionality
-
-3. **Live Demo** (If Possible)
-   - Deployed application
-   - Accessible URL
-   - Working functionality
-
-## 🏆 Judging Criteria
-
-### Innovation (30%)
-- Unique AI application
-- Creative problem-solving
-- Novel use of AI technology
-
-### Technical Quality (25%)
-- Code quality and structure
-- Performance and efficiency
-- Error handling and reliability
-
-### User Experience (25%)
-- Intuitive interface
-- Responsive design
-- Accessibility considerations
-
-### Impact (20%)
-- Real-world applicability
-- Potential user base
-- Social or commercial value
-
-## 🎓 Mentorship
-
-### Available Mentors
-
-- **Ashton Hettiarachi** - OpenxAI, Openmesh (Founder and Product Architect)
-- **Sam Mens** - OpenxAI, Openmesh (Lead Engineer)
-- **John Forfar** - OpenxAI, Openmesh (Developer Relations)
-- **Hariharan Suresh** - NVIDIA (Senior Cloud & GenAI Technologist)
-
-### Getting Help
-
-1. **Discord Community** - Join for real-time support
-2. **Mentor Sessions** - Scheduled on July 22nd
-3. **Documentation** - Comprehensive guides in each template
-4. **GitHub Issues** - Report bugs and request features
-
-## 🎯 Tips for Success
-
-### 1. Start Early
-- Begin with a template
-- Test thoroughly
-- Iterate based on feedback
-
-### 2. Focus on Innovation
-- Solve real problems
-- Use AI creatively
-- Think outside the box
-
-### 3. Polish Your Application
-- Clean, professional UI
-- Smooth user experience
-- Comprehensive documentation
-
-### 4. Demonstrate Value
-- Clear use case
-- Target audience
-- Potential impact
-
-## 📞 Support & Resources
-
-### Official Channels
 - **Website**: [OpenxAI Global Accelerator](https://openxai.com/accelerator)
-- **Discord**: Join our community for support
-- **Email**: accelerator@openxai.com
+- **Discord**: Join our community for support > https://discord.gg/pBw389cbtq
 
-### Technical Resources
-- **Ollama Documentation**: https://ollama.ai/docs
-- **Next.js Documentation**: https://nextjs.org/docs
-- **Tailwind CSS**: https://tailwindcss.com/docs
-- **Nix Documentation**: https://nixos.org/guides
+### Quick Resources
+- **Ollama**: https://ollama.ai/docs
+- **Next.js**: https://nextjs.org/docs
+- **AI Models**: `ollama pull llama3.2:1b`
 
-### AI Models
-- **LLaMA**: `ollama pull llama3.2:1b`
-- **LLaVA**: `ollama pull llava:latest`
-- **Mistral**: `ollama pull mistral:latest`
-- **Code Llama**: `ollama pull codellama:latest`
+## ❓ FAQ – OpenXAI Hackathon
+
+### 1. How do I sign up to officially enter the hackathon?
+
+Fill out the form at the bottom of https://accelerator.openxai.org/
+
+Make sure to add your details, your github username, your teamname, your university name, and project name.
+
+### 2. How do I submit my project?
+
+To submit your project, follow these steps:
+
+* Choose the track you want to build in from the [GitHub repo](https://github.com/OpenxAI-Network/global-accelerator-2025).
+* Clone the repository to your local computer
+* Create a branch with your project name in it and switch to that branch
+* Open the repository in Cursor AI
+* **Option A**: Copy a demo app folder to `HACKATHON-SUBMISSIONS/0001_Your-Project-Name/` format
+* **Option B**: Ask Cursor AI to create a new app in the HACKATHON-SUBMISSIONS folder
+* Work with AI to update your code and app deployment
+* Once done, make a pull request (PR) to the main GitHub repository. Only update files in your HACKATHON-SUBMISSIONS sub-folder.
+
+### 3. Can I participate as part of a team?
+
+Yes! Team participation is fully allowed and even encouraged. Collaborate, divide tasks, and build something awesome together. Just ensure your GitHub PR reflects all team members' contributions and make sure when you sign up you have your team name. For your final submission ensure that all your team members contribute to the branch and their usernames are listed in the README files.
+
+### 4. What is an OpenX Node?
+
+Think of it as your own dedicated GPU block — a powerful compute unit designed to run your AI workloads seamlessly.
+If your project gets selected, you may get access to one worth $1500 to build and scale your idea further.
+
+### 5. Can I submit an existing project?
+
+Yes, but we only assess code that is committed during the period of the hackathon. This is an open source project so many code examples or projects exist on the internet. Make sure it aligns with one of the provided tracks and you clearly mention what you've improved or adapted. Fresh ideas are appreciated, but enhanced existing ones are welcome too.
+
+### 6. Is there any cost to participate?
+
+Nope! The hackathon is absolutely free. Just bring your ideas, energy, and coding skills.
+
+### 7. What are the available tracks?
+
+We have multiple exciting tracks (details on the website above). Pick the one that aligns with your interests or explore something new!
 
 ## 🎉 Good Luck!
 
