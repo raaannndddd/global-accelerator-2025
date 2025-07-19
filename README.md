@@ -114,6 +114,67 @@ npm install
 npm run dev
 ```
 
+### Ultimate Vibe Code Prompt
+```
+You are an expert AI developer helping create a sentiment analysis chat application for the OpenxAI Global Accelerator 2025 Hackathon.
+
+**TASK**: Create a new sentiment analysis chat app based on the TEXTSTREAM-TRACK template
+
+**STEPS**:
+1. **Research the repository structure**:
+   - Examine all demo-app folders in the root directory
+   - Study the TEXTSTREAM-TRACK/demo-app-BASIC-CHAT-APP structure
+   - Check the current submissions in 00_HACKATHON-SUBMISSIONS to determine the next project number
+
+2. **Create project folder**:
+   - Create a new folder in 00_HACKATHON-SUBMISSIONS with format: 000X_Project-Name
+   - Increment the project number from the highest existing number
+   - Use a descriptive name like "sentiment-analyzer" or "mood-chat"
+
+3. **Build the sentiment analysis app**:
+   - Copy the TEXTSTREAM-TRACK/demo-app-BASIC-CHAT-APP structure as your base
+   - Modify the chat interface to include:
+     * Text input area for user messages
+     * AI response area with streaming responses
+     * **Sentiment indicator** showing conversation mood (peaceful, neutral, angry, excited, etc.)
+     * Visual mood indicators (emojis, colors, progress bars)
+   - Update the API route to analyze sentiment using Ollama
+   - Enhance the UI with Tailwind CSS for a modern, polished look
+
+4. **Technical requirements**:
+   - Use Next.js 15 with TypeScript
+   - Integrate with Ollama for AI responses
+   - Implement real-time sentiment analysis
+   - Add visual feedback for conversation mood
+   - Ensure responsive design with Tailwind CSS
+   - Include proper error handling and loading states
+
+5. **UI/UX enhancements**:
+   - Add mood-based color themes
+   - Include animated sentiment indicators
+   - Create intuitive conversation flow
+   - Add helpful placeholder text and instructions
+
+**CRITICAL FIXES TO IMPLEMENT**:
+- **Dependency Management**: Use `npm install --legacy-peer-deps` to resolve React version conflicts
+- **JSON Parsing Safety**: Implement robust JSON parsing with try-catch blocks for AI responses
+- **Fallback Sentiment Analysis**: Create keyword-based fallback when AI sentiment analysis fails
+- **Error Handling**: Add comprehensive error handling for API failures and malformed responses
+- **Package.json Conflicts**: Ensure React and React-DOM versions are explicitly specified
+- **Multiple Lockfiles**: Remove duplicate package-lock.json files to prevent conflicts
+- **Ollama Model Verification**: Check if required model is available before starting the app
+
+**TROUBLESHOOTING CHECKLIST**:
+- [ ] Verify Ollama is running and model is downloaded (`ollama list`)
+- [ ] Test API endpoint with curl before running the app
+- [ ] Check for dependency conflicts and resolve with --legacy-peer-deps
+- [ ] Ensure proper error handling in sentiment analysis
+- [ ] Validate JSON parsing with try-catch blocks
+- [ ] Test fallback sentiment analysis when AI fails
+
+**DELIVERABLE**: A fully functional sentiment analysis chat app that can detect and display the emotional tone of conversations in real-time with robust error handling and fallback systems.
+```
+
 Open [http://localhost:3000](http://localhost:3000) to see your app!
 
 ## 📝 Submission Format
@@ -147,9 +208,10 @@ To submit your project, follow these steps:
 * Create a branch with your project name in it and switch to that branch
 * Open the repository in Cursor AI
 * **Option A**: Copy a demo app folder to `HACKATHON-SUBMISSIONS/0001_Your-Project-Name/` format
-* **Option B**: Ask Cursor AI to create a new app in the HACKATHON-SUBMISSIONS folder
+* **Option B**: VIBE CODE !!!! Ask Cursor AI to create a new app in the HACKATHON-SUBMISSIONS folder
 * Work with AI to update your code and app deployment
 * Once done, make a pull request (PR) to the main GitHub repository. Only update files in your HACKATHON-SUBMISSIONS sub-folder.
+* Record demo video of you explaining your app and running it locally and why it should win! Add the YouTube link to your README.
 
 ### 3. Can I participate as part of a team?
 
