@@ -33,6 +33,8 @@ const exampleCommands = [
   "Cut down the Amazon rainforest",
   "Smash a meteor into Earth",
   "Start a nuclear war",
+  "Crash the moon into Earth",
+  "God saves the Earth",
   "Release 50 million tons of CO2",
   "Build 10,000 factories in China",
   "Erupt all volcanoes simultaneously",
@@ -143,8 +145,7 @@ export default function Home() {
     } finally {
       setIsProcessing(false)
       setAiThinkingLog([])
-      // Clear special event after a delay
-      setTimeout(() => setSpecialEvent(null), 5000)
+      // Special events are permanent until full reset or God save
     }
   }
 
@@ -226,7 +227,7 @@ export default function Home() {
         {pollutionLevel > 0 && (
           <div 
             className="absolute inset-0 bg-red-500 opacity-20"
-            style={{ opacity: pollutionLevel / 100 }}
+            style={{ opacity: Math.min(pollutionLevel / 100 * 0.4, 0.4) }}
           />
         )}
       </div>
@@ -318,9 +319,9 @@ export default function Home() {
             <div className="mb-4">
               <h3 className="text-sm font-semibold mb-2 text-gray-300">Impact Analysis:</h3>
               <div className="max-h-32 overflow-y-auto bg-gray-800 p-3 rounded">
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <div className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">
                   {currentAnalysis}
-                </p>
+                </div>
               </div>
             </div>
           )}
