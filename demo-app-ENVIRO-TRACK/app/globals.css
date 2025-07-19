@@ -51,6 +51,7 @@ body {
   width: 100%;
   height: 100vh;
   background: radial-gradient(ellipse at center, #0c1445 0%, #000000 100%);
+  overflow: hidden;
 }
 
 /* Pollution overlay */
@@ -69,6 +70,9 @@ body {
   backdrop-filter: blur(10px);
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 /* Animated background */
@@ -88,4 +92,14 @@ body {
   100% {
     background-position: 0% 50%;
   }
+} 
+
+/* Ensure globe is always visible */
+.globe-container > div:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 } 

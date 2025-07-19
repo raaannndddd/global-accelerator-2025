@@ -21,9 +21,10 @@ interface EarthMetrics {
 
 interface AICommand {
   command: string
-  impact: string
-  effects: any
+  analysis: string
   timestamp: Date
+  responseTime: number
+  model: string
 }
 
 const exampleCommands = [
@@ -42,6 +43,12 @@ const exampleCommands = [
   "Spray aerosols into the atmosphere",
   "Melt all polar ice caps",
   "Poison all freshwater sources"
+]
+
+const availableModels = [
+  { id: 'deepseek-r1:8b', name: 'DeepSeek R1 (8B)', description: 'Slow & accurate' },
+  { id: 'qwen3:8b', name: 'Qwen3 (8B)', description: 'Fast inference' },
+  { id: 'deepseek-r1:1.5b', name: 'DeepSeek R1 (1.5B)', description: 'Fast inference' }
 ]
 
 export default function Home() {
@@ -64,6 +71,7 @@ export default function Home() {
   const [currentAnalysis, setCurrentAnalysis] = useState<string>('')
   const [aiThinkingLog, setAiThinkingLog] = useState<string[]>([])
   const [specialEvent, setSpecialEvent] = useState<string | null>(null)
+  const [selectedModel, setSelectedModel] = useState('deepseek-r1:8b')
   const inputRef = useRef<HTMLInputElement>(null)
 
   // AI thinking process simulation
@@ -79,28 +87,16 @@ export default function Home() {
   ]
 
   const processUserCommand = async (command: string) => {
-    if (!command.trim() || isProcessing) return
-
     setIsProcessing(true)
-    setCurrentAnalysis('AI is analyzing your command...')
-    setSpecialEvent(null)
-
-    // Check for special catastrophic events
-    const lowerCommand = command.toLowerCase()
-    if (lowerCommand.includes('meteor') || lowerCommand.includes('asteroid') || lowerCommand.includes('smash')) {
-      setSpecialEvent('meteor')
-    } else if (lowerCommand.includes('nuclear') || lowerCommand.includes('bomb')) {
-      setSpecialEvent('nuclear')
-    } else if (lowerCommand.includes('volcano') || lowerCommand.includes('erupt')) {
-      setSpecialEvent('volcano')
-    }
-
+    setAiThinkingLog([])
+    setCurrentAnalysis('')
+    
+    const startTime = Date.now()
+    
     // Simulate AI thinking process
-    const thinkingLog: string[] = []
     for (let i = 0; i < thinkingSteps.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000))
-      thinkingLog.push(thinkingSteps[i])
-      setAiThinkingLog([...thinkingLog])
+      await new Promise(resolve => setTimeout(resolve, 200))
+      setAiThinkingLog(prev => [...prev, thinkingSteps[i]])
     }
 
     try {
@@ -112,45 +108,38 @@ export default function Home() {
         body: JSON.stringify({
           command,
           currentMetrics: metrics,
-          pollutionLevel
+          pollutionLevel,
+          model: selectedModel
         }),
       })
 
-      if (response.ok) {
-        const result = await response.json()
-        
-        // Apply the calculated effects to the metrics
-        setMetrics(prev => ({
-          ...prev,
-          co2Level: Math.max(0, Math.min(prev.co2Level + result.effects.co2, 2000)),
-          toxicityLevel: Math.max(0, Math.min(prev.toxicityLevel + result.effects.toxicity, 100)),
-          temperature: Math.max(-50, Math.min(prev.temperature + result.effects.temperature, 50)),
-          humanPopulation: Math.max(0, prev.humanPopulation + result.effects.humans),
-          animalPopulation: Math.max(0, prev.animalPopulation + result.effects.animals),
-          plantPopulation: Math.max(0, prev.plantPopulation + result.effects.plants),
-          oceanAcidity: Math.max(6.0, Math.min(prev.oceanAcidity + result.effects.oceanAcidity, 9.0)),
-          iceCapMelting: Math.max(0, Math.min(prev.iceCapMelting + result.effects.iceMelting, 100)),
-        }))
-
-        // Update pollution level based on overall impact
-        const newPollutionLevel = Math.max(0, Math.min(pollutionLevel + result.effects.pollution, 100))
-        setPollutionLevel(newPollutionLevel)
-
-        // Add to command history
-        const newCommand: AICommand = {
-          command,
-          impact: result.impact,
-          effects: result.effects,
-          timestamp: new Date()
-        }
-        setCommandHistory(prev => [newCommand, ...prev.slice(0, 9)]) // Keep last 10 commands
-
-        setCurrentAnalysis(result.impact)
-        setUserInput('')
+      if (!response.ok) {
+        throw new Error('Failed to process command')
       }
+
+      const data = await response.json()
+      const endTime = Date.now()
+      const responseTime = (endTime - startTime) / 1000
+
+      // Update metrics
+      setMetrics(data.metrics)
+      setPollutionLevel(data.pollutionLevel)
+      setCurrentAnalysis(data.analysis)
+      setSpecialEvent(data.specialEvent)
+
+      // Add to command history
+      const newCommand: AICommand = {
+        command,
+        analysis: data.analysis,
+        timestamp: new Date(),
+        responseTime,
+        model: selectedModel
+      }
+      setCommandHistory(prev => [newCommand, ...prev.slice(0, 9)]) // Keep last 10
+
     } catch (error) {
-      console.error('Failed to process command:', error)
-      setCurrentAnalysis('Failed to process command. Please try again.')
+      console.error('Error processing command:', error)
+      setCurrentAnalysis('Error: Failed to process command. Please try again.')
     } finally {
       setIsProcessing(false)
       setAiThinkingLog([])
@@ -197,24 +186,24 @@ export default function Home() {
 
   // Auto-simulation loop for continuous degradation
   useEffect(() => {
-    if (!isSimulationRunning) return
+    if (!isSimulationRunning || isProcessing) return // Pause auto-sim when processing commands
 
     const interval = setInterval(() => {
       setMetrics(prev => ({
         ...prev,
-        co2Level: Math.min(prev.co2Level + 0.5, 2000),
-        toxicityLevel: Math.min(prev.toxicityLevel + 0.2, 100),
-        temperature: Math.min(prev.temperature + 0.05, 50),
-        humanPopulation: Math.max(prev.humanPopulation - 1000, 0),
-        animalPopulation: Math.max(prev.animalPopulation - 5000, 0),
-        plantPopulation: Math.max(prev.plantPopulation - 50000, 0),
-        oceanAcidity: Math.max(prev.oceanAcidity - 0.005, 6.0),
-        iceCapMelting: Math.min(prev.iceCapMelting + 0.2, 100),
+        co2Level: Math.min(prev.co2Level + 0.1, 2000), // Much slower degradation
+        toxicityLevel: Math.min(prev.toxicityLevel + 0.05, 100),
+        temperature: Math.min(prev.temperature + 0.01, 50),
+        humanPopulation: Math.max(prev.humanPopulation - 100, 0),
+        animalPopulation: Math.max(prev.animalPopulation - 500, 0),
+        plantPopulation: Math.max(prev.plantPopulation - 5000, 0),
+        oceanAcidity: Math.max(prev.oceanAcidity - 0.001, 6.0),
+        iceCapMelting: Math.min(prev.iceCapMelting + 0.05, 100),
       }))
-    }, 2000) // Slower degradation
+    }, 5000) // Much slower - every 5 seconds instead of 2
 
     return () => clearInterval(interval)
-  }, [isSimulationRunning])
+  }, [isSimulationRunning, isProcessing]) // Also depend on isProcessing
 
   // Focus input on mount
   useEffect(() => {
@@ -244,7 +233,7 @@ export default function Home() {
 
       {/* Control Panel */}
       <div className="absolute top-4 left-4 z-20">
-        <div className="metrics-panel rounded-lg p-4 mb-4">
+        <div className="metrics-panel rounded-lg p-4 mb-4 max-w-sm max-h-[80vh] overflow-y-auto">
           <h2 className="text-xl font-bold mb-2">AI Earth Controller</h2>
           
           {/* Simulation Controls */}
@@ -274,37 +263,67 @@ export default function Home() {
                 type="text"
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
-                placeholder="e.g., 'add 1 million V8 trucks to the world'"
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white placeholder-gray-400"
+                placeholder="Type your environmental command..."
                 disabled={isProcessing}
+                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white placeholder-gray-400 disabled:bg-gray-700"
               />
               <button
                 type="submit"
                 disabled={isProcessing || !userInput.trim()}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 rounded flex items-center gap-2"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 rounded flex items-center gap-2"
               >
-                {isProcessing ? <Loader2 className="animate-spin" size={16} /> : <Send size={16} />}
+                {isProcessing ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
                 Send
               </button>
             </div>
           </form>
 
           {/* Example Commands */}
-          <div className="text-xs text-gray-400">
-            <p className="mb-2">Click any example to try:</p>
+          <div className="mb-4">
+            <h3 className="text-sm font-semibold mb-2 text-gray-300">Example Commands:</h3>
             <div className="max-h-32 overflow-y-auto space-y-1">
-              {exampleCommands.map((example, index) => (
+              {exampleCommands.slice(0, 5).map((example, index) => (
                 <button
                   key={index}
                   onClick={() => handleExampleClick(example)}
                   disabled={isProcessing}
-                  className="block w-full text-left hover:text-white hover:bg-gray-700 px-2 py-1 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="block w-full text-left px-2 py-1 text-xs bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 rounded text-gray-300 disabled:text-gray-500"
                 >
-                  • "{example}"
+                  {example}
                 </button>
               ))}
             </div>
           </div>
+
+          {/* AI Thinking Log */}
+          {aiThinkingLog.length > 0 && (
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold mb-2 text-gray-300 flex items-center gap-2">
+                <Brain size={14} />
+                AI Analysis:
+              </h3>
+              <div className="space-y-1">
+                {aiThinkingLog.map((step, index) => (
+                  <div key={index} className="text-xs text-gray-400 flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    {step}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Current Analysis */}
+          {currentAnalysis && (
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold mb-2 text-gray-300">Impact Analysis:</h3>
+              <div className="max-h-32 overflow-y-auto bg-gray-800 p-3 rounded">
+                <p className="text-sm text-gray-300 leading-relaxed">
+                  {currentAnalysis}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -313,76 +332,44 @@ export default function Home() {
         <MetricsPanel metrics={metrics} pollutionLevel={pollutionLevel} />
       </div>
 
-      {/* AI Analysis Panel */}
-      {currentAnalysis && (
-        <div className="absolute bottom-4 left-4 z-20">
-          <div className="metrics-panel rounded-lg p-4 max-w-md">
-            <div className="flex items-center gap-2 mb-3">
-              <Brain className="w-5 h-5 text-purple-400" />
-              <h3 className="text-lg font-bold">AI Analysis</h3>
-            </div>
-            <div className="text-sm text-gray-300">
-              {isProcessing ? (
-                <div className="flex items-center gap-2">
-                  <Loader2 className="animate-spin w-4 h-4 text-purple-400" />
-                  {currentAnalysis}
-                </div>
-              ) : (
-                <p>{currentAnalysis}</p>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* AI Thinking Log */}
-      {aiThinkingLog.length > 0 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="metrics-panel rounded-lg p-4 max-w-lg opacity-90">
-            <div className="flex items-center gap-2 mb-2">
-              <Brain className="w-4 h-4 text-purple-400" />
-              <h4 className="text-sm font-semibold">AI Thinking Process</h4>
-            </div>
-            <div className="space-y-1 text-xs text-gray-300">
-              {aiThinkingLog.map((step, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                  <span>{step}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Command History */}
-      {commandHistory.length > 0 && (
-        <div className="absolute bottom-4 right-4 z-20">
-          <div className="metrics-panel rounded-lg p-4 max-w-sm max-h-64 overflow-y-auto">
-            <h3 className="text-lg font-bold mb-3">Recent Commands</h3>
-            <div className="space-y-2 text-xs">
-              {commandHistory.map((cmd, index) => (
-                <div key={index} className="border-l-2 border-purple-400 pl-2">
-                  <p className="font-semibold text-white">"{cmd.command}"</p>
-                  <p className="text-gray-400 mt-1">{cmd.impact}</p>
-                  <p className="text-gray-500 text-xs mt-1">
-                    {cmd.timestamp.toLocaleTimeString()}
-                  </p>
+      <div className="absolute bottom-4 right-4 z-20">
+        <div className="metrics-panel rounded-lg p-4 max-w-md">
+          <h3 className="text-sm font-semibold mb-2 text-gray-300">Recent AI Requests:</h3>
+          <div className="space-y-2 max-h-48 overflow-y-auto">
+            {commandHistory.map((cmd, index) => (
+              <div key={index} className="text-xs border-l-2 border-blue-500 pl-2">
+                <div className="text-gray-400 mb-1">
+                  <span className="font-semibold">{cmd.model}</span> • {cmd.responseTime.toFixed(1)}s
                 </div>
-              ))}
-            </div>
+                <div className="text-gray-300 mb-1">{cmd.command}</div>
+                <div className="text-gray-500 text-xs">{cmd.timestamp.toLocaleTimeString()}</div>
+              </div>
+            ))}
+            {commandHistory.length === 0 && (
+              <div className="text-gray-500 text-xs">No commands yet</div>
+            )}
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Title */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20">
-        <h1 className="text-4xl font-bold text-center bg-black bg-opacity-50 px-6 py-3 rounded-lg">
-          🌍 Dead-Earth Project
-        </h1>
-        <p className="text-center text-gray-300 mt-2 bg-black bg-opacity-50 px-4 py-2 rounded">
-          AI-Controlled Climate Change Simulation
-        </p>
+      {/* Model Selection */}
+      <div className="absolute bottom-4 left-4 z-20">
+        <div className="metrics-panel rounded-lg p-4">
+          <h3 className="text-sm font-semibold mb-2 text-gray-300">AI Model:</h3>
+          <select
+            value={selectedModel}
+            onChange={(e) => setSelectedModel(e.target.value)}
+            disabled={isProcessing}
+            className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded text-white text-sm disabled:bg-gray-700"
+          >
+            {availableModels.map((model) => (
+              <option key={model.id} value={model.id}>
+                {model.name} - {model.description}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   )

@@ -20,159 +20,174 @@ interface GlobeProps {
   specialEvent?: string | null
 }
 
-function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
+interface EarthProps extends GlobeProps {
+  isAutoRotating: boolean
+}
+
+// Major population centers with lat/lon coordinates (using exact datacenter locations)
+const MAJOR_CITIES = [
+  // North America
+  { lat: 40.7128, lon: -74.0060, name: 'New York' },
+  { lat: 37.7749, lon: -122.4194, name: 'San Francisco' },
+  { lat: 45.5234, lon: -122.6762, name: 'Portland' },
+  { lat: 45.5017, lon: -73.5673, name: 'Montreal' },
+  { lat: 41.8781, lon: -87.6298, name: 'Chicago' },
+  { lat: 33.4484, lon: -112.0740, name: 'Phoenix' },
+  { lat: 33.7490, lon: -84.3880, name: 'Atlanta' },
+  { lat: 43.6532, lon: -79.3832, name: 'Toronto' },
+  
+  // South America
+  { lat: -23.5505, lon: -46.6333, name: 'São Paulo' },
+  
+  // Europe
+  { lat: 53.3498, lon: -6.2603, name: 'Dublin' },
+  { lat: 51.5074, lon: -0.1278, name: 'London' },
+  { lat: 50.1109, lon: 8.6821, name: 'Frankfurt' },
+  { lat: 45.4642, lon: 9.1900, name: 'Milan' },
+  { lat: 48.8566, lon: 2.3522, name: 'Paris' },
+  { lat: 59.3293, lon: 18.0686, name: 'Stockholm' },
+  { lat: 55.6761, lon: 12.5683, name: 'Copenhagen' },
+  { lat: 47.3769, lon: 8.5417, name: 'Zurich' },
+  { lat: 43.6047, lon: 1.4442, name: 'Toulouse' },
+  { lat: 46.2044, lon: 6.1432, name: 'Geneva' },
+  
+  // Asia
+  { lat: 25.2048, lon: 55.2708, name: 'Dubai' },
+  { lat: 19.0760, lon: 72.8777, name: 'Mumbai' },
+  { lat: 35.6762, lon: 139.6503, name: 'Tokyo' },
+  { lat: 37.5665, lon: 126.9780, name: 'Seoul' },
+  { lat: 1.3521, lon: 103.8198, name: 'Singapore' },
+  { lat: 22.3193, lon: 114.1694, name: 'Hong Kong' },
+  { lat: 24.9056, lon: 67.0822, name: 'Karachi' },
+  { lat: 31.2304, lon: 121.4737, name: 'Shanghai' },
+  { lat: 34.6937, lon: 135.5023, name: 'Osaka' },
+  { lat: 35.1796, lon: 129.0756, name: 'Busan' },
+  { lat: 18.5204, lon: 73.8567, name: 'Pune' },
+  { lat: 13.0827, lon: 80.2707, name: 'Chennai' },
+  { lat: 24.4539, lon: 54.3773, name: 'Abu Dhabi' },
+  
+  // Australia/Oceania
+  { lat: -33.8688, lon: 151.2093, name: 'Sydney' },
+  { lat: -37.8136, lon: 144.9631, name: 'Melbourne' },
+  { lat: -40.9006, lon: 174.8860, name: 'Wellington' },
+  
+  // Africa
+  { lat: -33.9249, lon: 18.4241, name: 'Cape Town' },
+]
+
+// Major forest/plant regions (using nearby coordinates)
+const FOREST_REGIONS = [
+  // Amazon Rainforest
+  { lat: -3.4653, lon: -58.3804, name: 'Amazon Basin' },
+  { lat: -2.5297, lon: -60.0233, name: 'Amazon Forest' },
+  { lat: -1.4554, lon: -48.4898, name: 'Amazon Delta' },
+  
+  // Congo Rainforest
+  { lat: 0.2280, lon: 15.8277, name: 'Congo Basin' },
+  { lat: -0.2280, lon: 15.8277, name: 'Congo Forest' },
+  
+  // Southeast Asian Forests
+  { lat: 1.3521, lon: 103.8198, name: 'Southeast Asia Forest' },
+  { lat: 13.7563, lon: 100.5018, name: 'Thailand Forest' },
+  { lat: 14.5995, lon: 120.9842, name: 'Philippines Forest' },
+  
+  // North American Forests
+  { lat: 45.5017, lon: -73.5673, name: 'Canadian Forest' },
+  { lat: 44.0582, lon: -121.3153, name: 'Pacific Northwest Forest' },
+  { lat: 35.7796, lon: -78.6382, name: 'Appalachian Forest' },
+  
+  // European Forests
+  { lat: 52.5200, lon: 13.4050, name: 'European Forest' },
+  { lat: 55.7558, lon: 37.6176, name: 'Russian Taiga' },
+  
+  // Asian Forests
+  { lat: 35.6762, lon: 139.6503, name: 'Japanese Forest' },
+  { lat: 31.2304, lon: 121.4737, name: 'Chinese Forest' },
+  { lat: 19.0760, lon: 72.8777, name: 'Indian Forest' },
+]
+
+// Land-based coordinates for better distribution (using verified land coordinates)
+const LAND_COORDINATES = [
+  // North America
+  { lat: 45.0, lon: -100.0 }, { lat: 35.0, lon: -90.0 }, { lat: 40.0, lon: -80.0 },
+  { lat: 30.0, lon: -85.0 }, { lat: 25.0, lon: -100.0 }, { lat: 50.0, lon: -120.0 },
+  
+  // South America
+  { lat: -10.0, lon: -60.0 }, { lat: -20.0, lon: -50.0 }, { lat: -30.0, lon: -60.0 },
+  { lat: -15.0, lon: -70.0 }, { lat: -25.0, lon: -55.0 }, { lat: -5.0, lon: -80.0 },
+  
+  // Europe
+  { lat: 50.0, lon: 10.0 }, { lat: 45.0, lon: 15.0 }, { lat: 55.0, lon: 20.0 },
+  { lat: 40.0, lon: 5.0 }, { lat: 60.0, lon: 25.0 }, { lat: 35.0, lon: 0.0 },
+  
+  // Asia
+  { lat: 35.0, lon: 100.0 }, { lat: 25.0, lon: 110.0 }, { lat: 45.0, lon: 90.0 },
+  { lat: 20.0, lon: 80.0 }, { lat: 30.0, lon: 120.0 }, { lat: 40.0, lon: 130.0 },
+  
+  // Africa
+  { lat: 10.0, lon: 20.0 }, { lat: -10.0, lon: 30.0 }, { lat: 5.0, lon: 10.0 },
+  { lat: -20.0, lon: 25.0 }, { lat: 15.0, lon: 5.0 }, { lat: 0.0, lon: 15.0 },
+  
+  // Australia
+  { lat: -25.0, lon: 135.0 }, { lat: -30.0, lon: 145.0 }, { lat: -20.0, lon: 125.0 },
+  { lat: -35.0, lon: 150.0 }, { lat: -15.0, lon: 130.0 }, { lat: -40.0, lon: 140.0 },
+]
+
+function Earth({ pollutionLevel, metrics, specialEvent, isAutoRotating }: EarthProps) {
   const earthRef = useRef<THREE.Mesh>(null)
   const atmosphereRef = useRef<THREE.Mesh>(null)
   const [meteorPosition, setMeteorPosition] = useState<[number, number, number]>([0, 20, 0])
   const [explosionActive, setExplosionActive] = useState(false)
-  const [isAutoRotating, setIsAutoRotating] = useState(true)
 
-  // Create Earth texture programmatically
-  const earthTexture = useMemo(() => {
-    const canvas = document.createElement('canvas')
-    canvas.width = 1024
-    canvas.height = 512
-    const ctx = canvas.getContext('2d')!
-    
-    // Fill with ocean blue
-    ctx.fillStyle = '#006994'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    
-    // Draw continents using simplified shapes
-    const drawContinent = (path: number[][], color: string) => {
-      ctx.beginPath()
-      ctx.moveTo(path[0][0], path[0][1])
-      for (let i = 1; i < path.length; i++) {
-        ctx.lineTo(path[i][0], path[i][1])
-      }
-      ctx.closePath()
-      ctx.fillStyle = color
-      ctx.fill()
+  // Load better Earth textures
+  const earthTextures = useMemo(() => {
+    const textureLoader = new THREE.TextureLoader()
+    return {
+      colorMap: textureLoader.load('/global-datacenter-visualization/src/00_earthmap1k.jpg'),
+      bumpMap: textureLoader.load('/global-datacenter-visualization/src/01_earthbump1k.jpg'),
+      specularMap: textureLoader.load('/global-datacenter-visualization/src/02_earthspec1k.jpg'),
+      lightsMap: textureLoader.load('/global-datacenter-visualization/src/03_earthlights1k.jpg')
     }
-    
-    // North America - simplified but recognizable
-    drawContinent([
-      [200, 120], [280, 100], [350, 110], [400, 130], [420, 160],
-      [400, 190], [380, 210], [350, 220], [320, 210], [300, 190],
-      [280, 170], [260, 150], [240, 130], [220, 120], [200, 120]
-    ], '#90EE90')
-    
-    // South America - simplified but recognizable
-    drawContinent([
-      [280, 220], [300, 240], [320, 260], [340, 280], [360, 300],
-      [380, 320], [400, 340], [420, 360], [400, 380], [380, 400],
-      [360, 420], [340, 440], [320, 460], [300, 470], [280, 460],
-      [260, 440], [240, 420], [220, 400], [240, 380], [260, 360],
-      [280, 340], [300, 320], [320, 300], [300, 280], [280, 260]
-    ], '#228B22')
-    
-    // Europe - simplified
-    drawContinent([
-      [480, 160], [500, 140], [520, 130], [540, 140], [560, 160],
-      [580, 180], [560, 200], [540, 210], [520, 200], [500, 180],
-      [480, 160]
-    ], '#90EE90')
-    
-    // Africa - simplified but recognizable
-    drawContinent([
-      [480, 220], [500, 240], [520, 260], [540, 280], [560, 300],
-      [580, 320], [600, 340], [620, 360], [640, 380], [660, 400],
-      [680, 420], [700, 440], [720, 460], [700, 480], [680, 460],
-      [660, 440], [640, 420], [620, 400], [600, 380], [580, 360],
-      [560, 340], [540, 320], [520, 300], [500, 280], [480, 260]
-    ], '#DAA520')
-    
-    // Asia - simplified but recognizable
-    drawContinent([
-      [700, 120], [720, 100], [740, 90], [760, 100], [780, 120],
-      [800, 140], [820, 160], [840, 180], [860, 200], [880, 220],
-      [900, 240], [920, 260], [940, 280], [960, 300], [980, 320],
-      [960, 340], [940, 360], [920, 380], [900, 400], [880, 420],
-      [860, 440], [840, 460], [820, 480], [800, 500], [780, 480],
-      [760, 460], [740, 440], [720, 420], [700, 400], [680, 380],
-      [660, 360], [640, 340], [620, 320], [600, 300], [580, 280],
-      [560, 260], [540, 240], [520, 220], [500, 200], [480, 180],
-      [500, 160], [520, 140], [540, 120], [560, 110], [580, 120],
-      [600, 140], [620, 160], [640, 180], [660, 200], [680, 220],
-      [700, 240], [720, 260], [740, 280], [760, 300], [780, 320],
-      [800, 340], [820, 360], [840, 380], [860, 400], [880, 420],
-      [900, 440], [920, 460], [940, 480], [920, 460], [900, 440],
-      [880, 420], [860, 400], [840, 380], [820, 360], [800, 340],
-      [780, 320], [760, 300], [740, 280], [720, 260], [700, 240]
-    ], '#90EE90')
-    
-    // Australia - simplified
-    drawContinent([
-      [900, 320], [920, 300], [940, 290], [960, 300], [980, 320],
-      [1000, 340], [980, 360], [960, 380], [940, 400], [920, 420],
-      [900, 440], [880, 420], [860, 400], [840, 380], [820, 360],
-      [800, 340], [820, 320], [840, 300], [860, 290], [880, 300],
-      [900, 320]
-    ], '#DAA520')
-    
-    // Polar ice caps
-    // North Pole
-    ctx.beginPath()
-    ctx.arc(512, 50, 60, 0, Math.PI * 2)
-    ctx.fillStyle = '#FFFFFF'
-    ctx.fill()
-    
-    // South Pole
-    ctx.beginPath()
-    ctx.arc(512, 462, 50, 0, Math.PI * 2)
-    ctx.fillStyle = '#FFFFFF'
-    ctx.fill()
-    
-    // Apply desertification based on temperature
-    if (metrics.temperature > 35) {
-      const desertFactor = Math.min(1, (metrics.temperature - 35) / 15)
-      ctx.globalAlpha = desertFactor * 0.3
-      ctx.fillStyle = '#D2B48C'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.globalAlpha = 1
-    }
-    
-    // Apply pollution overlay
-    if (pollutionLevel > 0) {
-      const pollutionFactor = pollutionLevel / 100
-      ctx.globalAlpha = pollutionFactor * 0.4
-      ctx.fillStyle = '#8B0000'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.globalAlpha = 1
-    }
-    
-    const texture = new THREE.CanvasTexture(canvas)
-    texture.wrapS = THREE.RepeatWrapping
-    texture.wrapT = THREE.RepeatWrapping
-    return texture
-  }, [pollutionLevel, metrics.temperature])
-
-  // Create bump map for terrain
-  const bumpMap = useMemo(() => {
-    const canvas = document.createElement('canvas')
-    canvas.width = 1024
-    canvas.height = 512
-    const ctx = canvas.getContext('2d')!
-    
-    // Create noise for terrain
-    const imageData = ctx.createImageData(canvas.width, canvas.height)
-    const data = imageData.data
-    
-    for (let i = 0; i < data.length; i += 4) {
-      const noise = Math.random() * 255
-      data[i] = noise     // R
-      data[i + 1] = noise // G
-      data[i + 2] = noise // B
-      data[i + 3] = 255   // A
-    }
-    
-    ctx.putImageData(imageData, 0, 0)
-    
-    const texture = new THREE.CanvasTexture(canvas)
-    texture.wrapS = THREE.RepeatWrapping
-    texture.wrapT = THREE.RepeatWrapping
-    return texture
   }, [])
+
+  // Convert lat/lon to 3D position on Earth surface (exact copy from global-datacenter-visualization)
+  const latLonToVector3 = (lat: number, lon: number, radius: number = 5.01) => {
+    const phi = (90 - lat) * (Math.PI / 180)
+    const theta = (lon + 180) * (Math.PI / 180)
+    const x = radius * Math.sin(phi) * Math.cos(theta)
+    const z = -radius * Math.sin(phi) * Math.sin(theta)
+    const y = radius * Math.cos(phi)
+    return new THREE.Vector3(x, y, z)
+  }
+
+  // Calculate population dots based on actual metrics - EXACTLY like global-datacenter-visualization
+  const getPopulationDots = useMemo(() => {
+    // Humans: Show dots at major cities, number based on population - NO RANDOM OFFSETS
+    const humanDotCount = Math.min(Math.floor(metrics.humanPopulation / 500000000), MAJOR_CITIES.length) // Max based on available cities
+    const humanDots = MAJOR_CITIES.slice(0, humanDotCount).map(city => ({
+      position: latLonToVector3(city.lat, city.lon, 5.01),
+      color: 0xFFC0CB, // Piggy pink for humans
+      size: 0.03
+    }))
+
+    // Animals: Show dots at major cities (like datacenters) - NO RANDOM OFFSETS
+    const animalDotCount = Math.min(Math.floor(metrics.animalPopulation / 2000000000), MAJOR_CITIES.length)
+    const animalDots = MAJOR_CITIES.slice(0, animalDotCount).map(city => ({
+      position: latLonToVector3(city.lat, city.lon, 5.01),
+      color: 0xD2691E, // Caramel color for animals
+      size: 0.02
+    }))
+
+    // Plants: Show dots at forest regions - NO RANDOM OFFSETS
+    const plantDotCount = Math.min(Math.floor(metrics.plantPopulation / 20000000000), FOREST_REGIONS.length)
+    const plantDots = FOREST_REGIONS.slice(0, plantDotCount).map(forest => ({
+      position: latLonToVector3(forest.lat, forest.lon, 5.01),
+      color: 0x228B22, // Green for plants
+      size: 0.015
+    }))
+
+    return { humanDots, animalDots, plantDots }
+  }, [metrics.humanPopulation, metrics.animalPopulation, metrics.plantPopulation])
 
   useFrame(() => {
     if (earthRef.current && isAutoRotating) {
@@ -182,7 +197,6 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
       atmosphereRef.current.rotation.y += 0.002
     }
 
-    // Meteor animation
     if (specialEvent === 'meteor' && meteorPosition[1] > -5) {
       setMeteorPosition(prev => [prev[0], prev[1] - 0.5, prev[2]])
       if (meteorPosition[1] <= -5 && !explosionActive) {
@@ -191,7 +205,6 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
     }
   })
 
-  // Reset meteor when special event changes
   useEffect(() => {
     if (specialEvent !== 'meteor') {
       setMeteorPosition([0, 20, 0])
@@ -199,10 +212,9 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
     }
   }, [specialEvent])
 
-  // Calculate atmosphere color
   const getAtmosphereColor = () => {
-    const baseColor = new THREE.Color(0x87CEEB) // Sky blue
-    const toxicColor = new THREE.Color(0x32CD32) // Lime green
+    const baseColor = new THREE.Color(0x87CEEB)
+    const toxicColor = new THREE.Color(0x32CD32)
     const pollutionFactor = metrics.toxicityLevel / 100
     
     const finalColor = new THREE.Color()
@@ -210,29 +222,6 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
     finalColor.lerp(toxicColor, pollutionFactor)
     
     return finalColor
-  }
-
-  // Calculate population density for dots
-  const getPopulationDots = (type: 'humans' | 'animals') => {
-    const population = type === 'humans' ? metrics.humanPopulation : metrics.animalPopulation
-    const maxDots = type === 'humans' ? 200 : 400
-    const dotCount = Math.min(Math.floor(population / 50000000), maxDots)
-    
-    return Array.from({ length: dotCount }, (_, i) => {
-      const lat = (Math.random() - 0.5) * Math.PI * 0.8
-      const lon = Math.random() * Math.PI * 2
-      const radius = 5.05 + Math.random() * 0.1
-      
-      return {
-        position: [
-          radius * Math.cos(lat) * Math.cos(lon),
-          radius * Math.sin(lat),
-          radius * Math.cos(lat) * Math.sin(lon)
-        ],
-        color: type === 'humans' ? 0x4169E1 : 0x228B22,
-        size: type === 'humans' ? 0.02 : 0.015
-      }
-    })
   }
 
   return (
@@ -251,16 +240,43 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
         ))}
       </group>
       
-      {/* Earth with proper texture mapping */}
+      {/* Earth with proper textures and population dots as children */}
       <mesh ref={earthRef}>
-        <sphereGeometry args={[5, 128, 128]} />
+        <icosahedronGeometry args={[5, 16]} />
         <meshStandardMaterial 
-          map={earthTexture}
-          bumpMap={bumpMap}
+          map={earthTextures.colorMap}
+          bumpMap={earthTextures.bumpMap}
           bumpScale={0.1}
           roughness={0.8}
           metalness={0.1}
         />
+
+        {/* Population dots as children of Earth mesh - they will rotate with the Earth */}
+        <group>
+          {/* Human population dots - fixed to Earth surface */}
+          {getPopulationDots.humanDots.map((dot, i) => (
+            <mesh key={`human-${i}`} position={dot.position}>
+              <sphereGeometry args={[dot.size, 4, 4]} />
+              <meshBasicMaterial color={dot.color} />
+            </mesh>
+          ))}
+
+          {/* Animal population dots - fixed to Earth surface */}
+          {getPopulationDots.animalDots.map((dot, i) => (
+            <mesh key={`animal-${i}`} position={dot.position}>
+              <sphereGeometry args={[dot.size, 4, 4]} />
+              <meshBasicMaterial color={dot.color} />
+            </mesh>
+          ))}
+
+          {/* Plant population dots - fixed to Earth surface */}
+          {getPopulationDots.plantDots.map((dot, i) => (
+            <mesh key={`plant-${i}`} position={dot.position}>
+              <sphereGeometry args={[dot.size, 4, 4]} />
+              <meshBasicMaterial color={dot.color} />
+            </mesh>
+          ))}
+        </group>
       </mesh>
 
       {/* Ocean pollution overlay */}
@@ -286,22 +302,6 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
           side={THREE.BackSide}
         />
       </mesh>
-
-      {/* Human population dots */}
-      {getPopulationDots('humans').map((dot, i) => (
-        <mesh key={`human-${i}`} position={dot.position as [number, number, number]}>
-          <sphereGeometry args={[dot.size, 4, 4]} />
-          <meshBasicMaterial color={dot.color} />
-        </mesh>
-      ))}
-
-      {/* Animal population dots */}
-      {getPopulationDots('animals').map((dot, i) => (
-        <mesh key={`animal-${i}`} position={dot.position as [number, number, number]}>
-          <sphereGeometry args={[dot.size, 4, 4]} />
-          <meshBasicMaterial color={dot.color} />
-        </mesh>
-      ))}
       
       {/* Pollution particles */}
       {pollutionLevel > 0 && (
@@ -348,7 +348,6 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
         <mesh position={meteorPosition}>
           <sphereGeometry args={[0.4, 8, 8]} />
           <meshStandardMaterial color={0x696969} />
-          {/* Meteor trail */}
           <mesh position={[0, 0.8, 0]}>
             <cylinderGeometry args={[0.08, 0.08, 1.6, 4]} />
             <meshStandardMaterial color={0xFF6347} />
@@ -379,7 +378,7 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
       {/* Nuclear explosion */}
       {specialEvent === 'nuclear' && (
         <group>
-          <mesh position={[0, 0, 0]}>
+          <mesh>
             <sphereGeometry args={[6, 16, 16]} />
             <meshStandardMaterial 
               color={0xFFD700}
@@ -407,15 +406,15 @@ function Earth({ pollutionLevel, metrics, specialEvent }: GlobeProps) {
       {/* Volcanic eruption */}
       {specialEvent === 'volcano' && (
         <group>
-          {Array.from({ length: 25 }, (_, i) => (
+          {Array.from({ length: 30 }, (_, i) => (
             <mesh key={i} position={[
-              (Math.random() - 0.5) * 6,
+              (Math.random() - 0.5) * 10,
               Math.random() * 8,
-              (Math.random() - 0.5) * 6
+              (Math.random() - 0.5) * 10
             ]}>
-              <sphereGeometry args={[0.15, 4, 4]} />
+              <sphereGeometry args={[0.2, 4, 4]} />
               <meshStandardMaterial 
-                color={0x8B0000}
+                color={0xFF4500}
                 transparent
                 opacity={0.6}
               />
@@ -433,23 +432,25 @@ export default function Globe({ pollutionLevel, metrics, specialEvent }: GlobePr
   return (
     <div className="w-full h-full">
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
-        {/* Proper lighting without glow effect */}
         <ambientLight intensity={0.4} />
         <directionalLight position={[10, 10, 5]} intensity={0.8} />
         <directionalLight position={[-5, 5, -5]} intensity={0.4} />
         
-        <Earth pollutionLevel={pollutionLevel} metrics={metrics} specialEvent={specialEvent} />
+        <Earth 
+          pollutionLevel={pollutionLevel} 
+          metrics={metrics} 
+          specialEvent={specialEvent} 
+          isAutoRotating={isAutoRotating} 
+        />
         
         <OrbitControls 
           enablePan={true}
           enableZoom={true}
           enableRotate={true}
-          minDistance={8}
-          maxDistance={25}
           onStart={() => setIsAutoRotating(false)}
           onEnd={() => setIsAutoRotating(true)}
         />
       </Canvas>
     </div>
   )
-} 
+}
