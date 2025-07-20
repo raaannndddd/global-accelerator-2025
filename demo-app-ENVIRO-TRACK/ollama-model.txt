@@ -1,1 +1,1 @@
-deepseek-r1:8b 
+deepseek-r1:8b
