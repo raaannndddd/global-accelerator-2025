@@ -199,7 +199,7 @@ See `00_HACKATHON-SUBMISSIONS/0000_Example-Project-Name/README.md` for the requi
 - **Next.js**: https://nextjs.org/docs
 - **AI Models**: `ollama pull llama3.2:1b`
 
-## ❓ FAQ – OpenXAI Australian Hack Node
+## ❓ FAQ – OpenxAI Australian Hack Node
 
 ### 1. How do I sign up to officially enter the hackathon?
 
