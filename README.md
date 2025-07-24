@@ -1,50 +1,56 @@
-# 🚀 OpenxAI Global AI Accelerator 2025 University Hackathon
+# 🚀 Australian Hack Node to the OpenxAI Global AI Accelerator 2025 
 
-## Join the OpenxAI Global AI Accelerator 2025 University Hackathon
+*NOTE: Other Hack Node regions will be opening up shortly. Please subscribe for updates at [https://accelerator.openxai.org](https://accelerator.openxai.org)*
+
+## Join the Australian Hack Node to the OpenxAI Global AI Accelerator 2025
 
 **$7500+ in Prizes!**
 
 Today, a few big corporations manage 90% of the world's AI & Cloud systems, and we are supposed to trust them. 
 We are here to challenge that. 
 
-The OpenxAI Global Accelerator Program invites Universities to create decentralized AI app projects using NextJS/Python, across 9 tracks including AI gaming, text, image, voice, education, finance, health, environment and social apps. 
+The OpenxAI Global Accelerator Program invites Universities from around the world to create decentralized AI app projects using NextJS/Python, across 9 tracks including AI gaming, text, image, voice, education, finance, health, environment and social apps. Join the Australian Hack Node to win the local prizes and qualify to the Global Accelerator to secure up to $100K in investment, and go to Dubai to meet the mentors and investors in person.
 
 Vibe code with our app demo code in Github & Cursor AI. Attend our Workshops to learn how - see our Mimic & AI Panel AI apps for inspiration!
 
-Starting 15th July 2025, this 30-day program offers the possibility to win from $7,500+ prizes, the Xnode One Hardware, and mentorship from industry experts like NVIDIA.
+Starting 15th July 2025, this 30-day program offers the possibility to win from $7,500+ prizes, the Xnode One Hardware, change to move to the Global Accelerator, and mentorship from industry experts like NVIDIA. For top creators there's also job opportunities to be secured with OpenxAI.
 
-Welcome to the **OpenxAI Global AI Accelerator Program 2025**! This repository contains templates and examples to help you build decentralized AI applications across 9 different tracks.
+Welcome to the **Australian Hack Node to the OpenxAI Global AI Accelerator Program 2025**! This repository contains templates and examples to help you build decentralized AI applications across 9 different tracks.
 
 ## 🏆 Hackathon Overview
 
 - **💰 Prizes**: $7.5K total prizes ($2,500 per winner)
 - **🎁 Hardware**: Xnode One Hardware
+- **💼 Career**: Get hired to one of the open junior positions (AI Engineer, Software Engineer, or AI Apps Developer)
+- **🏆 Qualify to Global Accelerator**: top apps will be invited to compete in the Global Accelerator for a chance to secure $100K investment, and meet their mentors and investors in Dubai.
 - **👥 Mentorship**: Industry experts from NVIDIA, OpenxAI, and Openmesh
 - **📅 Duration**: 30-day program (July 15th - August 15th, 2025)
 - **🎯 Goal**: Create innovative decentralized AI applications
+
 
 ## 📅 Timeline
 
 | Date | Event |
 |------|-------|
 | **Jul 15th** | Sign-Ups Open - Hackathon Official Announcement |
-| **Jul 18th** | Start Building - Form teams or Go Solo! Vibe Code your way to prizes across 9 tracks |
-| **Jul 22nd** | Mentor - Check our Luma Calendar to attend Orientation & Developer Workshops |
-| **Jul 25th** | Submissions open |
+| **Jul 25th** | Submissions Open - Start Building - Form teams or Go Solo! Vibe Code your way to prizes across 9 tracks |
+| **Aug 1st** | Mentor - Check our Luma Calendar to attend Orientation & Developer Workshops 
 | **Aug 12th** | Submission close & judging begins - Create branch & PR to our Github. Include Video link in README |
 | **Aug 15th** | Winning Teams Announcement - Placement on our Upcoming AI App Store & Prizes to be Won! |
 
 ### 🎓 Attend our developer workshops and mentor sessions
 
 **When is it hosted?**
-The event is running from the 15th of July. Here's the Luma Calendar. 
+The event is running from the 15th of July. Here's the Luma Calendar [NEED TO LINK!]. 
 Be sure to sign-up on Luma for event updates. Subject to change.
 
-- **19th Jul** — OpenxAI Global Accelerator Program: Orientation Workshop
-- **23rd Jul** — Spark & Succeed: Launch Your OpenxAI Hackathon Project
-- **30th Jul** — Build Fast, Build Smart: OpenxAI Hackathon Infrastructure
-- **6th Aug** — Data for the Win: Power Your OpenxAI Hackathon Project
-- **13th Aug** — Prototype and Pitch: Nailing Your OpenxAI Hackathon Demo
+- **19th Jul** — OpenxAI Global Accelerator Program: Day 0 Orientation Workshop (Finished)
+- **31st Jul** — Intro to Hack Node Australia & Global Accelerator Program: Orientation Workshop
+- **3rd Aug** — Discord Dev Workshop: Kick Off Your App with OpenxAI
+- **6th Aug** — Discord Dev Workshop: Code Like a Pro with OpenxAI Tools
+- **7th Aug** — Discord Dev Workshop: Boost Your App: UI/UX & User Growth
+- **7th Aug** — Discord Dev Workshop: Nail Your App Submission: Final Prep
+- **10th Aug** — Discord Dev Workshop: Nail Your App Submission: Final Prep
 
 ## 🎯 9 Tracks Available
 
@@ -183,15 +189,17 @@ See `00_HACKATHON-SUBMISSIONS/0000_Example-Project-Name/README.md` for the requi
 
 ## 📞 Support
 
+
 - **Website**: [OpenxAI Global Accelerator](https://openxai.com/accelerator)
-- **Discord**: Join our community for support > https://discord.gg/pBw389cbtq
+-** AU Hack Node Submission Page**: [BlockseBlock](https://blockseblock.com/hackathon_details/OpenxAI%20Hack%20Node%20Australia)
+- **Discord**: Join our community for support > https://discord.gg/qu8jJqum5Z
 
 ### Quick Resources
 - **Ollama**: https://ollama.ai/docs
 - **Next.js**: https://nextjs.org/docs
 - **AI Models**: `ollama pull llama3.2:1b`
 
-## ❓ FAQ – OpenXAI Hackathon
+## ❓ FAQ – OpenXAI Australian Hack Node
 
 ### 1. How do I sign up to officially enter the hackathon?
 
